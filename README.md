@@ -102,7 +102,7 @@ Following is the maxtext training command:
 ```
 python  MaxText/train.py MaxText/configs/base.yml base_output_directory=gs://snap-maxtext-output/ dataset_path=gs://snap-maxtext-dataset/   attention=cudnn_flash_te  use_iota_embed=true scan_layers=false  dcn_data_parallelism=2 ici_fsdp_parallelism=8 per_device_batch_size=4  max_target_length=4096 remat_policy=minimal_flash logits_dot_in_fp32=false  tokenizer_path=assets/tokenizer.llama2 run_name=llama2_finetune_4vm-401 steps=400 async_checkpointing=false model_name=llama2-7b checkpoint_period=200 enable_checkpointing=True hardware=gpu"
 ```
-#### Dataset
+### Dataset
 Note in the training command above is using C4 dataset. This is about 800 GB of text. The dataset is downloaded using the script is in maxtext repo:
 
 ```
