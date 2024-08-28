@@ -179,7 +179,7 @@
                 
                
            ], 
-          "imageUri": "gcr.io/google.com/vertex-training-dlexamples/snap-perf-repo/maxtext-fastrak:06-11-2024",
+          "imageUri": "aurius/maxtext-fastrak:06-11-2024",
           "command": ["bash","-c", "cd /deps && gsutil cp gs://snap-maxtext-output/vertex_config/05/gpu_multi_process_run.sh /deps && bash gpu_multi_process_run.sh"]
             
         }   
@@ -361,7 +361,7 @@
               
                
            ], 
-          "imageUri": "gcr.io/google.com/vertex-training-dlexamples/snap-perf-repo/maxtext-fastrak:06-11-2024",
+          "imageUri": "aurius/maxtext-fastrak:06-11-2024",
           "command": ["bash","-c", "cd /deps && gsutil cp gs://snap-maxtext-output/vertex_config/05/gpu_multi_process_run.sh /deps && bash gpu_multi_process_run.sh"]
         } 
          
