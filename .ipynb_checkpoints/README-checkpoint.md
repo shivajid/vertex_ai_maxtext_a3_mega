@@ -133,7 +133,23 @@ Maxtext has specific strings for each model.
 - LLama2 7b
 - LLama2 70b
 
+## Adding more Nodes to the Cluster
 
+The default configuration is with 2 worker, 1 master and 1 worker:
+
+- Update the worker count:
+Change the replca count to number of workers you want. Update for the worker and not for the master:
+```
+ "replicaCount": "1",
+```
+
+To support the above configuration. Update the following values in the working_config_ported_supercomputer.json file:
+
+- NNNODES: Change this is the env varible section of the 
+- In the training COMMAND string, update the following to a value same as number of nodes in the Cluster:
+    - dcn_data_parallelism
+    - num_slices
+  
 ## Contact
 
 Please reach out to shivajid@google.com for any questions.
