@@ -27,6 +27,7 @@ In this repo we have training examples for launching following model test runs:
 - LLama2 7B
 - LLama2 70
 
+### Setup
 On A3 Mega it achieves as high as 55% MFU on 2 Node A3 Mega.
 
 ```
