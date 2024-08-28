@@ -1,2 +1,0 @@
-Change NNODES, num_slices ,dcn_data_parallelism <== to number of A3 machines
-Change Runname after each run for maxtext
