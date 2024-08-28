@@ -55,6 +55,11 @@ curl -X POST \
 
 The above code is encapsulated in the file:
 - working_config_ported_supercomputer.sh
+### Submit a job
+To submit the job run the following:
+```
+bash working_config_ported_supercomputer.sh
+```
 
 ### Additional Information
 
