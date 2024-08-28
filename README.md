@@ -56,11 +56,7 @@ curl -X POST \
 
 The above code is encapsulated in the file:
 - working_config_ported_supercomputer.sh
-### Submit a job
-To submit the job run the following:
-```
-bash working_config_ported_supercomputer.sh
-```
+
 
 ### Additional Information
 
@@ -149,7 +145,21 @@ To support the above configuration. Update the following values in the working_c
 - In the training COMMAND string, update the following to a value same as number of nodes in the Cluster:
     - dcn_data_parallelism
     - num_slices
-  
+
+
+## Submit a job
+Before you submit a job ensure to edit working_config_ported_supercomputer.json" file to confuigure the 
+- dataset: Download and prepare the dataset 
+- Stage the gpu_multi_process_run.sh and ensure that it is reachable
+- Update the run name
+- Update the sharding
+
+To submit the job run the following:
+```
+bash working_config_ported_supercomputer.sh
+```
+
+
 ## Contact
 
 Please reach out to shivajid@google.com for any questions.
