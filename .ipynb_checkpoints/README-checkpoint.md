@@ -83,13 +83,54 @@ To support these changes we need to dynamically update the "gpu_multi_process_ru
 
 ### XLA Flags
 
-Following are the XLA Flags used. It is present in the job.json file:
+Following are the XLA Flags used. It is present in the working_config_ported_supercomputer.json file. These are well tuned for A3 Mega on GCP.
 
 ```
 --xla_dump_hlo_pass_re=.* --xla_gpu_enable_latency_hiding_scheduler=true --xla_gpu_enable_triton_gemm=false --xla_gpu_graph_level=0 --xla_gpu_enable_highest_priority_async_stream=true --xla_gpu_all_reduce_combine_threshold_bytes=536870912 --xla_gpu_all_gather_combine_threshold_bytes=134217728 --xla_gpu_reduce_scatter_combine_threshold_bytes=67108864 --xla_gpu_enable_pipelined_all_gather=true --xla_gpu_enable_pipelined_reduce_scatter=true --xla_gpu_enable_pipelined_all_reduce=true --xla_gpu_enable_while_loop_double_buffering=true --xla_gpu_enable_triton_softmax_fusion=false --xla_gpu_enable_all_gather_combine_by_dim=false --xla_gpu_enable_reduce_scatter_combine_by_dim=false --xla_disable_hlo_passes=rematerialization
 ```
 
+### Command
 
+Following is the maxtext training command:
+
+```
+python  MaxText/train.py MaxText/configs/base.yml base_output_directory=gs://snap-maxtext-output/ dataset_path=gs://snap-maxtext-dataset/   attention=cudnn_flash_te  use_iota_embed=true scan_layers=false  dcn_data_parallelism=2 ici_fsdp_parallelism=8 per_device_batch_size=4  max_target_length=4096 remat_policy=minimal_flash logits_dot_in_fp32=false  tokenizer_path=assets/tokenizer.llama2 run_name=llama2_finetune_4vm-401 steps=400 async_checkpointing=false model_name=llama2-7b checkpoint_period=200 enable_checkpointing=True hardware=gpu"
+```
+#### Dataset
+Note in the training command above is using C4 dataset. This is about 800 GB of text. The dataset is downloaded using the script is in maxtext repo:
+
+```
+bash download_dataset.sh {GCS_LOGS_BUCKET} {GCS_DATSET_BUCKET}
+```
+
+### Sharding
+
+The default job json is setup to run on 2 nodes. 1 master and 1 worker.
+
+We set FSDP across the GPUs in the A3 Mega: ici_fsdp_parallelism=8 
+
+We setup Data parallelism across the nodes: dcn_data_parallelism
+
+```
+dcn_data_parallelism=2 
+ici_fsdp_parallelism=8 
+per_device_batch_size=4
+```
+
+### run_name
+
+Please update the following with every run
+
+### model_name
+
+Maxtext has specific strings for each model. 
+- LLama2 7b
+- LLama2 70b
+
+
+## Contact
+
+Please reach out to shivajid@google.com for any questions.
 
 
 
