@@ -27,8 +27,12 @@ In this repo we have training examples for launching following model test runs:
 - LLama2 7B
 - LLama2 70
 
+### Note
+
+This is simple example for running LLama2-7b. You can use the setup to run the same with different models in ![Maxtext](https://github.com/google/maxtext/tree/maxtext-a3plus-release/MaxText/configs/models).
+
 ### Setup
-On A3 Mega it achieves as high as 55% MFU on 2 Node A3 Mega.
+On A3 Mega it achieves as high median MFU of 55% on 2 Node A3 Mega.
 
 ```
 git clone https://github.com/shivajid/a3_mega_benchmarking.git
