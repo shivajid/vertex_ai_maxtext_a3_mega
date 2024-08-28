@@ -1,0 +1,58 @@
+{
+  "displayName": "vertex_sharded_distributed",
+  "jobSpec": {
+    "workerPoolSpecs": [
+      {   
+        "machineSpec": {
+          "machineType": "a3-megagpu-8g",
+          "acceleratorType": "NVIDIA_H100_MEGA_80GB",
+          "acceleratorCount": 8,   
+        },  
+        "replicaCount": "1",
+        "containerSpec": {
+          "env": [
+              {   
+                  "name": "NCCL_LIB_DIR",
+                  "value": "/usr/local/nvidia/lib64"
+              },
+              {   
+                  "name": "NNODES",
+                  "value": "4"
+              },  
+          ],  
+          "imageUri": "gcr.io/google.com/vertex-training-dlexamples/snap-perf-repo/vertex_dist_example:latest"
+        }   
+      },  
+      {   
+        "machineSpec": {
+          "machineType": "a3-megagpu-8g",
+          "acceleratorType": "NVIDIA_H100_MEGA_80GB",
+          "acceleratorCount": 8, 
+          "reservationAffinity": {
+            "reservationAffinityType": "SPECIFIC_RESERVATION",
+            "key": "compute.googleapis.com/reservation-name",
+            "values": [
+                "projects/disco-sector-292704/zones/us-east4-a/reservations/snap-a3-mega-reservation"
+            ]  
+          }  
+
+        },  
+        "replicaCount": "3",
+        "containerSpec": {
+            "env": [
+              {   
+                  "name": "NCCL_LIB_DIR",
+                  "value": "/usr/local/nvidia/lib64"
+              },
+              {   
+                  "name": "NNODES",
+                  "value": "4"
+              },
+                
+          ],  
+          "imageUri": "gcr.io/google.com/vertex-training-dlexamples/snap-perf-repo/vertex_dist_example:latest"
+        }   
+      }   
+    ]   
+  }
+}
