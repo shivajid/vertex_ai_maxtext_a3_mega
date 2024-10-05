@@ -41,7 +41,7 @@ cd a3_mega_benchmarking.git
 ```
 To submit an A3 Mega job on Vertex you need:
 - Job json file, describe the job artifact
-- A Scrip to submit the job
+- A Script to submit the job
 
 We have the following file for the job json. This has all the NCCL environment specific to A3 Mega set up.
 - working_config_ported_supercomputer.json 
